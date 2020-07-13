@@ -278,7 +278,8 @@ hypre_COGMRESSolve(void  *cogmres_vdata,
    HYPRE_Int  break_value = 0;
    HYPRE_Int  i, j, k;
   /*KS: rv is the norm history */
-   HYPRE_Real *rs, *hh, *uu, *c, *s, *rs_2, *rv;
+   HYPRE_Real *rs, *uu, *c, *s, *rs_2, *rv;
+   HYPRE_Complex *hh;
   //, *tmp; 
    HYPRE_Int  iter; 
    HYPRE_Int  my_id, num_procs;
@@ -323,7 +324,7 @@ hypre_COGMRESSolve(void  *cogmres_vdata,
 
    rv = hypre_CTAllocF(HYPRE_Real, k_dim+1, cogmres_functions, HYPRE_MEMORY_HOST);
   
-   hh = hypre_CTAllocF(HYPRE_Real, (k_dim+1)*k_dim, cogmres_functions, HYPRE_MEMORY_HOST);
+   hh = hypre_CTAllocF(HYPRE_Complex, (k_dim+1)*k_dim, cogmres_functions, HYPRE_MEMORY_HOST);
    uu = hypre_CTAllocF(HYPRE_Real, (k_dim+1)*k_dim, cogmres_functions, HYPRE_MEMORY_HOST);
 
    (*(cogmres_functions->CopyVector))(b,p[0]);
